@@ -4,7 +4,7 @@ import "./chatlist.css";
 const ChatList = ({ listText }) => {
   return (
     <div className="chat-item">
-      <p className="individual-text">{listText}</p>
+      <p className="individual-text"><strong>{listText.name} :</strong>{listText.msg}</p>
     </div>
   );
 };

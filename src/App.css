@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.App-logo {
+  height: 40vmin;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -13,23 +17,6 @@
   color: white;
 }
 
-.form-field {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  padding: 20px;
-}
-
-.message-field {
-  width: 80%;
-  border: none;
-  outline: none;
-  border-bottom: 2px solid black;
-  margin-right: 10px;
-}
-
-.list-message {
-  border: 1px solid black;
-  width: 90%;
-  margin: 20px auto;
+.App-link {
+  color: #09d3ac;
 }

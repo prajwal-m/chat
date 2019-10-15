@@ -3,18 +3,23 @@ import "./App.css";
 import Button from "./components/button/Button";
 import ChatList from "./components/chatlist/ChatList";
 import socketIOClient from "socket.io-client";
-const socket = socketIOClient("http://172.16.7.195:4000");
+const socket = socketIOClient("http://localhost:4000");
 
 class App extends React.Component {
   state = {
     endpoint: "http://localhost:4000",
     message: "",
-    chatList: ["hey"]
+    chatList: [],
+    username:''
   };
   componentDidMount = () => {
+    const name = prompt("enter username");
+    this.setState({username:name}, ()=> {
+      socket.emit("addUser",this.state.username);
+    })
     let newList = [...this.state.chatList];
-    socket.on("chat message", msg => {
-      newList.push(msg);
+    socket.on("chat message", (msg,uname) => {
+      newList.push({msg:msg,name:uname});
       this.setState({ chatList: newList });
     });
   };
@@ -26,7 +31,7 @@ class App extends React.Component {
   sendMessage = () => {
     console.log("button clicked");
     console.log(this.state.message);
-    socket.emit("chat message", this.state.message);
+    socket.emit("chat message", this.state.message,this.state.username);
   };
 
   render() {
